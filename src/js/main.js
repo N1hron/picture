@@ -1,10 +1,16 @@
-import createModal from '../../../Irvas/src/js/modules/createModal'
+import createModal from './modules/createModal'
+import createSlider from './modules/createSlider'
 
 window.addEventListener('DOMContentLoaded', () => {
     'use strict'
 
+    // Modals:
     createModal('.button-design', '.popup-design', '.popup-close')
     createModal('.button-consultation', '.popup-consultation', '.popup-close').showModalAfterTime(60000)
+    createModal('.fixed-gift', '.popup-gift', '.popup-close', true, true)
 
-    console.log(document.documentElement.scrollHeight, document.documentElement.clientHeight, document.documentElement.scrollTop)
+    // Sliders:
+    createSlider('.main-slider', '.main-slider-item', null, null, true, 'vertical')
+    createSlider('.feedback-slider', '.feedback-slider-item', '.main-next-btn', '.main-prev-btn', false)
+    
 })

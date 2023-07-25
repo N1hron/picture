@@ -1,8 +1,9 @@
 import { addMargin, removeMargin } from './fixOverflow'
 
-let isModalActive = false
+let isModalActive = false,
+    triggerPressed = false
 
-export default function createModal(triggerSelector, modalSelector, closeSelector, closeOnOverlayClick = true) {
+export default function createModal(triggerSelector, modalSelector, closeSelector, removeTrigger = false, showAtTheEnd = false, closeOnOverlayClick = true) {
     function bindModal() {
         const triggers = document.querySelectorAll(triggerSelector),
               modal = document.querySelector(modalSelector),
@@ -10,7 +11,10 @@ export default function createModal(triggerSelector, modalSelector, closeSelecto
 
         triggers.forEach(trigger => {
             trigger.addEventListener('click', (event) => {
+                triggerPressed = true
+
                 event.preventDefault()
+                if (removeTrigger) trigger.remove()
                 showModal(modal)
             })
         })
@@ -23,9 +27,25 @@ export default function createModal(triggerSelector, modalSelector, closeSelecto
             })
         }
 
+        if (showAtTheEnd) {
+            let scrollHeight
+
+            window.addEventListener('scroll', () => {
+                scrollHeight = Math.max(
+                    document.body.scrollHeight, document.documentElement.scrollHeight,
+                    document.body.offsetHeight, document.documentElement.offsetHeight,
+                    document.body.clientHeight, document.documentElement.clientHeight
+                );
+    
+                if ((scrollHeight <= document.documentElement.clientHeight + window.scrollY) && !triggerPressed) {
+                    document.querySelectorAll(triggerSelector).forEach(trigger => trigger.click())
+                    showModal(modal)
+                }
+            })
+        }
+
         function showModalAfterTime(time) {
             setTimeout(() => {
-                console.log(isModalActive)
                 if (!isModalActive) showModal(modal)
             }, time)
         }
@@ -46,7 +66,7 @@ export default function createModal(triggerSelector, modalSelector, closeSelecto
         isModalActive = false
         modal.classList.remove('fadeIn')
         modal.style.display = 'none'
-        document.body.style.overflow = 'auto'
+        document.body.style.overflow = ''
         removeMargin()
     }
 
