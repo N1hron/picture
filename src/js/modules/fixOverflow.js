@@ -1,10 +1,12 @@
 const scrollbarWidth = calcScrollbarWidth()
 
-export function addMargin() {
+export function addMargin(element) {
+    if (element) element.style.marginRight = scrollbarWidth + 'px'
     document.body.style.marginRight = scrollbarWidth + 'px'
 }
 
-export function removeMargin() {
+export function removeMargin(element) {
+    if (element) element.style.marginRight = 0
     document.body.style.marginRight = 0
 }
 

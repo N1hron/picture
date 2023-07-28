@@ -8,8 +8,8 @@ export default function createSlider(sliderSelector, slideSelector, nextSelector
         prevSlide = 3,
         slidesTotal = slides.length,
         intervalId = null,
-        nextClass = type === 'horizontal' ? 'fadeInRight' : 'fadeInDown',
-        prevClass = type === 'horizontal' ? 'fadeInLeft' : 'fadeInUp'    
+        nextClass = type === 'vertical' ? 'fadeInDown': 'fadeInRight',
+        prevClass = type === 'vertical' ? 'fadeInUp' : 'fadeInLeft'    
 
     slides.forEach((slide, i) => {
         slide.style.display = i === currentSlide - 1 ? '' : 'none'
@@ -32,16 +32,12 @@ export default function createSlider(sliderSelector, slideSelector, nextSelector
     function updateSlider() {
         slides[currentSlide - 1].style.display = 'block'
         slides[prevSlide - 1].style.display = 'none'
-
         slides[prevSlide - 1].classList.remove(nextClass, prevClass)
-        
-        console.log(prevSlide, '=>' , currentSlide)
     }
 
     function showNextSlide() {
         prevSlide = currentSlide
         currentSlide = (currentSlide + 1) % (slidesTotal + 1) || 1
-
         slides[currentSlide - 1].classList.add(nextClass)
 
         updateSlider()
@@ -50,7 +46,6 @@ export default function createSlider(sliderSelector, slideSelector, nextSelector
     function showPrevSlide() {
         prevSlide = currentSlide
         currentSlide = (currentSlide - 1) % (slidesTotal + 1) || slidesTotal
-
         slides[currentSlide - 1].classList.add(prevClass)
 
         updateSlider()

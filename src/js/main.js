@@ -1,5 +1,6 @@
 import createModal from './modules/createModal'
 import createSlider from './modules/createSlider'
+import forms from './modules/forms'
 
 window.addEventListener('DOMContentLoaded', () => {
     'use strict'
@@ -13,4 +14,6 @@ window.addEventListener('DOMContentLoaded', () => {
     createSlider('.main-slider', '.main-slider-item', null, null, true, 'vertical')
     createSlider('.feedback-slider', '.feedback-slider-item', '.main-next-btn', '.main-prev-btn', false)
     
+    // Forms:
+    forms()
 })

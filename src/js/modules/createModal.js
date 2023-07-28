@@ -59,7 +59,7 @@ export default function createModal(triggerSelector, modalSelector, closeSelecto
         modal.classList.add('fadeIn')
         modal.style.display = 'block'
         document.body.style.overflow = 'hidden'
-        addMargin()
+        addMargin(document.querySelector('.fixed-gift'))
     }
 
     function hideModal(modal) {
@@ -67,7 +67,7 @@ export default function createModal(triggerSelector, modalSelector, closeSelecto
         modal.classList.remove('fadeIn')
         modal.style.display = 'none'
         document.body.style.overflow = ''
-        removeMargin()
+        removeMargin(document.querySelector('.fixed-gift'))
     }
 
     function hideAllModals() {
