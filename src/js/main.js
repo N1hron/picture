@@ -1,6 +1,7 @@
 import createModal from './modules/createModal'
 import createSlider from './modules/createSlider'
 import forms from './modules/forms'
+import bindPhoneMask from './modules/bindPhoneMask'
 
 window.addEventListener('DOMContentLoaded', () => {
     'use strict'
@@ -16,4 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
     
     // Forms:
     forms()
+
+    // Phone mask:
+    bindPhoneMask('[name="phone"]')
 })
