@@ -4,9 +4,8 @@ export default function bindPhoneMask(inputSelector) {
           inputs = document.querySelectorAll(inputSelector)
 
     inputs.forEach(input => {
-        input.addEventListener('focus', createMask)
-        input.addEventListener('input', createMask)
-        input.addEventListener('blur', createMask)
+        ['focus', 'input', 'blur'].forEach(eventType => input.addEventListener(eventType, createMask))
+        input.addEventListener('click', () => input.selectionStart = input.value.length)
     })
 
     function createMask(event) {
