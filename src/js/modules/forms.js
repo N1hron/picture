@@ -61,6 +61,8 @@ export default function forms() {
                 .finally(() => timeoutId = setTimeout(resetForm, 5000))
         })
 
+        enableValidation(form)
+
         function resetForm() {
             form.reset()
             if (fileInput) fileInput.parentElement.querySelector('[data-file]').textContent = 'Файл не выбран'
@@ -71,6 +73,16 @@ export default function forms() {
         function setMessage(type) {
             description.textContent = messages[type].description
             image.setAttribute('src', messages[type].image)
+        }
+    })
+}
+
+function enableValidation(form) {
+    form.querySelectorAll('input, textarea').forEach(item => {
+        if (!item.classList.contains('promocode')) {
+            item.addEventListener('keypress', event => {
+                if (event.key.match(/[^а-яё0-9]/)) event.preventDefault()
+            })
         }
     })
 }

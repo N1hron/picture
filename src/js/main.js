@@ -2,6 +2,8 @@ import createModal from './modules/createModal'
 import createSlider from './modules/createSlider'
 import forms from './modules/forms'
 import bindPhoneMask from './modules/bindPhoneMask'
+import showMoreStyles from './modules/showMoreStyles'
+import priceCalcuator from './modules/priceCalcuator'
 
 window.addEventListener('DOMContentLoaded', () => {
     'use strict'
@@ -20,4 +22,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Phone mask:
     bindPhoneMask('[name="phone"]')
+
+    // Showing more styles in styles section:
+    showMoreStyles()
+
+    // Price calculator:
+    priceCalcuator()
 })

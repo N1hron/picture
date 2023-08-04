@@ -4,13 +4,13 @@ export default function createSlider(sliderSelector, slideSelector, nextSelector
           next = slider.querySelector(nextSelector),
           prev = slider.querySelector(prevSelector)
 
-    let currentSlide = 1,
-        prevSlide = 3,
-        slidesTotal = slides.length,
-        intervalId = null,
+    let slidesTotal = slides.length,
+        currentSlide = 1,
+        prevSlide = slidesTotal,
         nextClass = type === 'vertical' ? 'fadeInDown': 'fadeInRight',
-        prevClass = type === 'vertical' ? 'fadeInUp' : 'fadeInLeft'    
-
+        prevClass = type === 'vertical' ? 'fadeInUp' : 'fadeInLeft',
+        intervalId = null
+            
     slides.forEach((slide, i) => {
         slide.style.display = i === currentSlide - 1 ? '' : 'none'
         slide.classList.add('animated')
