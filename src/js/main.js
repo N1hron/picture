@@ -5,6 +5,7 @@ import bindPhoneMask from './modules/bindPhoneMask'
 import showMoreStyles from './modules/showMoreStyles'
 import priceCalcuator from './modules/priceCalcuator'
 import photoFilter from './modules/photoFilter'
+import paintingsHover from './modules/paintingsHover'
 
 window.addEventListener('DOMContentLoaded', () => {
     'use strict'
@@ -32,4 +33,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Photo filtration:
     photoFilter()
+
+    // Show image on hover in sizes section:
+    paintingsHover()
 })
