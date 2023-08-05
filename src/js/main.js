@@ -4,6 +4,7 @@ import forms from './modules/forms'
 import bindPhoneMask from './modules/bindPhoneMask'
 import showMoreStyles from './modules/showMoreStyles'
 import priceCalcuator from './modules/priceCalcuator'
+import photoFilter from './modules/photoFilter'
 
 window.addEventListener('DOMContentLoaded', () => {
     'use strict'
@@ -28,4 +29,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Price calculator:
     priceCalcuator()
+
+    // Photo filtration:
+    photoFilter()
 })

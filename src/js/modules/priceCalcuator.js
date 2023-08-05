@@ -7,15 +7,15 @@ export default function priceCalcuator() {
     const priceContainer = document.querySelector('.calc-price'),
           defaultValue = 'Для расчета нужно выбрать размер картины и материал картины'
 
-    let price = 0
+    const fields = [size, material, options, promocode]
 
-    updatePrice();
+    fields.forEach(field => field.addEventListener('input', updatePrice))
 
-    [size, material, options, promocode].forEach(item => {
-        item.addEventListener('input', updatePrice)
-    })
+    updatePrice()
 
     function updatePrice() {
+        let price
+
         if (size.value && material.value && options.value) {
             price = (Number(size.value) + Number(material.value)) * options.value
             if (promocode.value === 'IWANTPOPART') price *= 0.7
