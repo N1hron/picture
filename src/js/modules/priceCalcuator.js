@@ -10,6 +10,7 @@ export default function priceCalcuator() {
     const fields = [size, material, options, promocode]
 
     fields.forEach(field => field.addEventListener('input', updatePrice))
+    priceContainer.closest('form').addEventListener('reset', () => priceContainer.textContent = defaultValue)
 
     updatePrice()
 
@@ -21,6 +22,6 @@ export default function priceCalcuator() {
             if (promocode.value === 'IWANTPOPART') price *= 0.7
         } else price = 0
         
-        priceContainer.textContent = price ? price : defaultValue
+        priceContainer.textContent = price ? `${Math.floor(price)}руб.` : defaultValue
     }
 }

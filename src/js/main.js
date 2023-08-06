@@ -6,6 +6,7 @@ import showMoreStyles from './modules/showMoreStyles'
 import priceCalcuator from './modules/priceCalcuator'
 import photoFilter from './modules/photoFilter'
 import paintingsHover from './modules/paintingsHover'
+import accordion from './modules/accordion'
 
 window.addEventListener('DOMContentLoaded', () => {
     'use strict'
@@ -36,4 +37,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Show image on hover in sizes section:
     paintingsHover()
+
+    // Accordion:
+    accordion()
 })

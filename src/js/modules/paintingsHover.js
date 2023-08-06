@@ -12,7 +12,7 @@ export default function paintingsHover() {
     function showImage(image) {
         image.src = `${srcBase}${image.className}-1.png`
         Array.from(image.parentElement.children).forEach(element => {
-            element.style.display = element === image ? '' : 'none'
+            element.style.display = element === image || element.classList.contains('sizes-hit') ? '' : 'none'
         })
     }
     

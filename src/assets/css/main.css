@@ -921,21 +921,33 @@ h4 {
   border-bottom: 2px dotted #333;
 }
 .often-questions .accordion-block {
-  margin-top: 1rem;
-  background-color: #f7e7e6;
-  padding: 3rem 4rem;
+  max-height: 0;
+  padding: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.25s ease-out;
 }
-.often-questions .accordion-block:before {
+.accordion-block-visible {
+  opacity: 1 !important;
+  padding-top: 30px !important;
+}
+.accordion-block>p {
+  padding: 3rem 4rem;
+  background-color: #f7e7e6;
+}
+.often-questions .accordion-block>p:before {
   content: '';
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: -6rem;
+  top: -30px;
   border: 3rem solid transparent;
   border-bottom: 3rem solid #f7e7e6;
 }
+.accordion-heading {
+  transition: margin-bottom 0.25s ease-out;
+}
 .often-questions .ui-accordion-header-active {
-  cursor: auto;
   color: #c51abb;
   margin-bottom: 0;
 }

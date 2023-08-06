@@ -231,22 +231,22 @@
 						<div class=file_upload>
 							<button type=button>Загрузить фотографию</button>
 							<div data-file>Файл не выбран</div>
-							<input type=file name=upload>
+							<input type=file name=upload required>
 						</div>
-						<select id=size>
+						<select id=size required>
 							<option value="">Выберите размер картины</option>
-							<option value="500">40x50</option>
-							<option value="1000">50x70</option>
-							<option value="1500">70x70</option>
-							<option value="2000">70x100</option>
+							<option value="1000">40x50</option>
+							<option value="2000">50x70</option>
+							<option value="2500">70x70</option>
+							<option value="3000">70x100</option>
 						</select>
-						<select id=material>
+						<select id=material required>
 							<option value="" >Выберите материал картины</option>
 							<option value="500" title="Изящный, позволяет легко создавать текстуру, подходит для декоративных картин маслом.">Холст из волокна</option>
 							<option value="1000" title="Достаточно грубый и создает ощущение реальности, подходит для классических пейзажей, натюрмортов и портретов.">Льняной холст</option>
 							<option value="1250" title="Изящный, подходит для всех типов реалистичных портретов.">Холст из натурального хлопка</option>
 						</select>
-						<select id=options>
+						<select id=options required>
 							<option value="">Дополнительные услуги</option>
 							<option value="1">Покрытие арт-гелем</option>
 							<option value="1.25">Экспресс-изготовление</option>

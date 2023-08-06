@@ -47,9 +47,14 @@ export default function forms() {
             message.append(description, image)
             form.parentElement.appendChild(message)
 
+            const formData = new FormData(form)
+            if (form.closest('.calc')) {
+                formData.append('price', form.querySelector('.calc-price').textContent.replace(/\D/g, ''))
+            }
+
             setMessage('loading')
 
-            postData(urls.designer, new FormData(form))
+            postData(urls.designer, formData)
                 .then(res => {
                     console.log(res)
                     setMessage('success')
@@ -79,15 +84,16 @@ export default function forms() {
 
 function enableValidation(form) {
     form.querySelectorAll('input, textarea').forEach(item => {
-        if (!item.classList.contains('promocode')) {
+        if (!item.classList.contains('promocode') && item.getAttribute('name') !== 'email') {
             item.addEventListener('keypress', event => {
-                if (event.key.match(/[^а-яё0-9]/)) event.preventDefault()
+                if (event.key.match(/[^а-яё0-9]/i)) event.preventDefault()
             })
         }
     })
 }
 
 async function postData(url, data) {
+    console.log(data)
     return await fetch(url, {
         method: 'POST',
         body: data
