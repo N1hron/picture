@@ -1,12 +1,12 @@
-export default function accordion() {
-    const blocks = document.querySelectorAll('.accordion-block'),
-          triggers = document.querySelectorAll('.accordion-heading > span')
+export default function accordion(contentSelector, triggerSelector) {
+    const contents = document.querySelectorAll(contentSelector),
+          triggers = document.querySelectorAll(triggerSelector)
     
     triggers.forEach((trigger, i) => trigger.addEventListener('click', () => toggleVisibility(i)))
 
     function toggleVisibility(index) {
         const trigger = triggers[index],
-              content = blocks[index]
+              content = contents[index]
 
         trigger.parentElement.classList.toggle('ui-accordion-header-active')
         content.classList.toggle('accordion-block-visible')

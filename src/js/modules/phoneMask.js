@@ -1,4 +1,4 @@
-export default function bindPhoneMask(inputSelector) {
+export default function phoneMask(inputSelector) {
     const mask = '+7 (___) ___ __ __',
           defaultValue = mask.replace(/\D/g, ''),
           inputs = document.querySelectorAll(inputSelector)

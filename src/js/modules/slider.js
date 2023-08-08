@@ -1,4 +1,4 @@
-export default function createSlider(sliderSelector, slideSelector, nextSelector, prevSelector, auto = false, type = 'horizontal') {
+export default function slider(sliderSelector, slideSelector, nextSelector, prevSelector, auto = false, type = 'horizontal') {
     const slider = document.querySelector(sliderSelector),
           slides = slider.querySelectorAll(slideSelector),
           next = slider.querySelector(nextSelector),

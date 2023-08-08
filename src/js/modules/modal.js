@@ -3,7 +3,7 @@ import { addMargin, removeMargin } from './fixOverflow'
 let isModalActive = false,
     triggerPressed = false
 
-export default function createModal(triggerSelector, modalSelector, closeSelector, removeTrigger = false, showAtTheEnd = false, closeOnOverlayClick = true) {
+export default function modal(triggerSelector, modalSelector, closeSelector, removeTrigger = false, showAtTheEnd = false, closeOnOverlayClick = true) {
     function bindModal() {
         const triggers = document.querySelectorAll(triggerSelector),
               modal = document.querySelector(modalSelector),
