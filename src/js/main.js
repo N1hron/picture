@@ -8,8 +8,9 @@ import photoFilter from './modules/photoFilter'
 import paintingsHover from './modules/paintingsHover'
 import accordion from './modules/accordion'
 import burgerMenu from './modules/burgerMenu'
+import scroll from './modules/scroll'
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', function() {
     'use strict'
 
     // Modals:
@@ -44,4 +45,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Burger menu that shows only when screen width is less than 993px:
     burgerMenu('.burger-menu', '.burger')
+
+    // Smooth scroll:
+    this.window.addEventListener('load', scroll)
 })
