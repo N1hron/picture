@@ -1750,6 +1750,7 @@ main {
   }
   .often-questions {
     padding: 6rem 0 4rem 0;
+    background-color: white;
   }
   .often-questions h2 {
     margin-bottom: 3rem;
