@@ -3,7 +3,12 @@ export default function scroll() {
           firstSection = document.querySelector('section'),
           links = document.querySelectorAll('[href^="#"]')
 
-    const firstSectionOffsetTop = window.scrollY + firstSection.getBoundingClientRect().top
+    const firstSectionOffsetTop = window.scrollY + firstSection.getBoundingClientRect().top,
+          pageHeight = Math.max(
+              document.body.scrollHeight, document.documentElement.scrollHeight,
+              document.body.offsetHeight, document.documentElement.offsetHeight,
+              document.body.clientHeight, document.documentElement.clientHeight
+          );
 
     up.classList.add('animated')
     up.style.display = 'none'
@@ -21,41 +26,51 @@ export default function scroll() {
             up.classList.add('fadeOut')
         }
     })
+
+    let requestId
     
     links.forEach(link => {
         link.addEventListener('click', event => {
             event.preventDefault()
     
-            const destination = document.querySelector(link.hash)
-            let offset = Math.round(destination.getBoundingClientRect().top)
-            const direction = offset > 0 ? 'forward' : 'backward',
-                  speed = 30
-            
-            let requestId = requestAnimationFrame(frame);
-
-            ['wheel', 'touchstart'].forEach(eventType => window.addEventListener(eventType, () => cancelAnimationFrame(requestId)))
-            window.addEventListener('keydown', (event) => {
-                const keyCode = event.keyCode
-                console.log(event)
-                if ([32, 33, 34, 38, 40].includes(keyCode) || (event.ctrlKey && [36, 35].includes(keyCode))) cancelAnimationFrame(requestId)
-            })
-
-            function frame() {
+            if (link.hash) {
+                const destination = document.querySelector(link.hash)
                 let offset = Math.round(destination.getBoundingClientRect().top)
+                const direction = offset > 0 ? 'forward' : 'backward',
+                    speed = 40
                 
-                switch (direction) {
-                    case 'forward': 
-                        if (offset > 0) {
-                            scrollTo(0, scrollY + speed)
-                            requestId = requestAnimationFrame(frame)
-                        } else location.hash = link.hash
-                        break
-                    case 'backward':
-                        if (offset < 0) {
-                            scrollTo(0, scrollY - speed)
-                            requestId = requestAnimationFrame(frame)
-                        } else location.hash = link.hash
-                        break
+                cancelAnimationFrame(requestId)
+                requestId = requestAnimationFrame(frame);
+
+                ['wheel', 'touchstart'].forEach(eventType => window.addEventListener(eventType, () => cancelAnimationFrame(requestId)))
+                window.addEventListener('keydown', (event) => {
+                    const keyCode = event.keyCode
+                    if ([32, 33, 34, 38, 40].includes(keyCode) || (event.ctrlKey && [36, 35].includes(keyCode))) cancelAnimationFrame(requestId)
+                })
+
+                function frame() {
+                    let offset = Math.round(destination.getBoundingClientRect().top)
+                    
+                    switch (direction) {
+                        case 'forward': 
+                            if (offset > 0 && (window.pageYOffset + document.documentElement.clientHeight < pageHeight)) {
+                                scrollTo(0, scrollY + speed)
+                                requestId = requestAnimationFrame(frame)
+                            } 
+                            else {
+                                location.hash = link.hash
+                            }
+                            break
+                        case 'backward':
+                            if (offset < 0) {
+                                scrollTo(0, scrollY - speed)
+                                requestId = requestAnimationFrame(frame)
+                            }
+                            else {
+                                location.hash = link.hash
+                            }
+                            break
+                    }
                 }
             }
         })

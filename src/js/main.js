@@ -9,6 +9,7 @@ import paintingsHover from './modules/paintingsHover'
 import accordion from './modules/accordion'
 import burgerMenu from './modules/burgerMenu'
 import scroll from './modules/scroll'
+import dragAndDrop from './modules/dragAndDrop'
 
 window.addEventListener('DOMContentLoaded', function() {
     'use strict'
@@ -48,4 +49,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
     // Smooth scroll:
     this.window.addEventListener('load', scroll)
+
+    // Drag and drop for file inputs:
+    dragAndDrop()
 })

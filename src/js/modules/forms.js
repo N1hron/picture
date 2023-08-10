@@ -22,12 +22,10 @@ export default function forms() {
     const forms = document.querySelectorAll('form'),
           fileInputs = document.querySelectorAll('[type="file"]')
 
+
     fileInputs.forEach(fileInput => {
-        fileInput.addEventListener('change', () => {
-            let [ name, extension ] = fileInput.files[0].name.split('.')
-            name = name.length > 7 ? name.slice(0, 7).trim() + '...' : name
-            fileInput.parentElement.querySelector('[data-file]').textContent = name + '.' + extension
-        })
+        setFileName(fileInput)
+        fileInput.addEventListener('input', () => setFileName(fileInput))
     })
 
     forms.forEach(form => {
@@ -80,6 +78,14 @@ export default function forms() {
             image.setAttribute('src', messages[type].image)
         }
     })
+}
+
+export function setFileName(fileInput) {
+    if (fileInput.files.length) {
+        let [ name, extension ] = fileInput.files[0].name.split('.')
+        name = name.length > 7 ? name.slice(0, 7).trim() + '...' : name
+        fileInput.closest('.file_upload').querySelector('[data-file]').textContent = name + '.' + extension
+    }
 }
 
 function enableValidation(form) {
